@@ -1,3 +1,4 @@
 rootProject.name = "KotestRobolectricSample"
 include ':junit5-sample'
 include ':junit4-sample'
+include ':junit4-spec-extension-sample'
