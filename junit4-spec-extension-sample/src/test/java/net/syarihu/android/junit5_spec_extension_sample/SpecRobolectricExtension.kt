@@ -8,6 +8,10 @@ import io.kotest.extensions.robolectric.RobolectricTest
 import kotlin.reflect.KClass
 import kotlin.reflect.full.findAnnotation
 
+/**
+ * Original:
+ * https://github.com/kotest/kotest/blob/master/kotest-extensions/kotest-extensions-robolectric/src/jvmMain/kotlin/io/kotest/extensions/robolectric/RobolectricExtension.kt
+ */
 class SpecRobolectricExtension : ConstructorExtension, SpecExtension {
     private val containedRobolectricRunner = ContainedRobolectricRunner()
 
