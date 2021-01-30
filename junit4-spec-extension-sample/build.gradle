@@ -7,7 +7,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "net.syarihu.android.junit5_spec_extension_sample"
+        applicationId "net.syarihu.android.junit4_spec_extension_sample"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

@@ -1,4 +1,4 @@
-package net.syarihu.android.junit5_spec_extension_sample
+package net.syarihu.android.junit4_spec_extension_sample
 
 import io.kotest.core.extensions.ConstructorExtension
 import io.kotest.core.extensions.SpecExtension
