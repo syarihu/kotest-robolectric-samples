@@ -1,19 +1,19 @@
 package net.syarihu.android.junit4_sample
 
-import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.runner.junit4.FunSpec
 
 class NormalSpec : FunSpec({
-    context("this outer block is enabled") {
+    context("hoge") {
         1 + 1 shouldBe 2
-        test("this test is disabled") {
+        test("fuga") {
             // test here
             1 + 1 shouldBe 2
         }
     }
-    context("this block is disabled") {
+    context("hoge2") {
         1 + 1 shouldBe 2
-        test("disabled by inheritance from the parent") {
+        test("fuga2") {
             1 + 1 shouldBe 2
         }
     }
