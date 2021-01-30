@@ -15,7 +15,7 @@ import kotlin.reflect.full.findAnnotation
  * Original:
  * https://github.com/kotest/kotest/blob/master/kotest-extensions/kotest-extensions-robolectric/src/jvmMain/kotlin/io/kotest/extensions/robolectric/RobolectricExtension.kt
  */
-class TestCaseRobolectricExtension : ConstructorExtension, TestCaseExtension {
+class RobolectricTestCaseExtension : ConstructorExtension, TestCaseExtension {
     private val containedRobolectricRunner = ContainedRobolectricRunner()
 
     override fun <T : Spec> instantiate(clazz: KClass<T>): Spec? {
@@ -55,6 +55,6 @@ class TestCaseRobolectricExtension : ConstructorExtension, TestCaseExtension {
     private fun afterTest(containedRobolectricRunner: ContainedRobolectricRunner) {
         containedRobolectricRunner.containedAfter()
         Thread.currentThread().contextClassLoader =
-            TestCaseRobolectricExtension::class.java.classLoader
+            RobolectricTestCaseExtension::class.java.classLoader
     }
 }
