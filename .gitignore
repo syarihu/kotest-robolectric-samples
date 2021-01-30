@@ -1,15 +1,48 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
 local.properties
+
+# Eclipse project files
+.classpath
+.project
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/*
+
+# Android Studio files
+.gradle/
+build/
+captures/
+
+# Mac OS .DS_Store file
+.DS_Store
+Thumbs.db
+
+# AspectJ
+ajcore.*.txt
+
+# bundle
+.bundle/
+vendor/
+
+# not ignore
+!.idea/gradle.xml
+!.idea/misc.xml
+!.idea/codeStyles
+
