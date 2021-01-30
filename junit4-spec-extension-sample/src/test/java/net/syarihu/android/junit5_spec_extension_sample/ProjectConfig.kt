@@ -6,5 +6,5 @@ import io.kotest.core.spec.IsolationMode
 
 object ProjectConfig : AbstractProjectConfig() {
     override val isolationMode: IsolationMode = IsolationMode.InstancePerTest
-    override fun extensions(): List<Extension> = listOf(SpecRobolectricExtension())
+    override fun extensions(): List<Extension> = listOf(RobolectricSpecExtension())
 }
