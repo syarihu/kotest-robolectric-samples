@@ -1,11 +1,8 @@
 package net.syarihu.android.kotest
 
 import io.kotest.core.extensions.ConstructorExtension
-import io.kotest.core.extensions.TestCaseExtension
+import io.kotest.core.extensions.SpecExtension
 import io.kotest.core.spec.Spec
-import io.kotest.core.test.TestCase
-import io.kotest.core.test.TestResult
-import io.kotest.core.test.TestType
 import io.kotest.extensions.robolectric.ContainedRobolectricRunner
 import io.kotest.extensions.robolectric.RobolectricTest
 import kotlin.reflect.KClass
@@ -15,7 +12,7 @@ import kotlin.reflect.full.findAnnotation
  * Original:
  * https://github.com/kotest/kotest/blob/master/kotest-extensions/kotest-extensions-robolectric/src/jvmMain/kotlin/io/kotest/extensions/robolectric/RobolectricExtension.kt
  */
-class TestCaseRobolectricExtension : ConstructorExtension, TestCaseExtension {
+class RobolectricSpecExtension : ConstructorExtension, SpecExtension {
     private val containedRobolectricRunner = ContainedRobolectricRunner()
 
     override fun <T : Spec> instantiate(clazz: KClass<T>): Spec? {
@@ -27,23 +24,17 @@ class TestCaseRobolectricExtension : ConstructorExtension, TestCaseExtension {
     private fun <T : Spec> KClass<T>.isNotRobolectricClass() =
         findAnnotation<RobolectricTest>() == null
 
-    override suspend fun intercept(
-        testCase: TestCase,
-        execute: suspend (TestCase) -> TestResult
-    ): TestResult {
-
-        if (testCase.spec::class.isNotRobolectricClass()) {
-            return execute(testCase)
+    override suspend fun intercept(spec: KClass<out Spec>, process: suspend () -> Unit) {
+        if (spec.isNotRobolectricClass()) {
+            process()
+            return
         }
 
         val containedRobolectricRunner = ContainedRobolectricRunner()
 
-        if (testCase.type == TestType.Test)
-            beforeTest(containedRobolectricRunner)
-        val result = execute(testCase)
-        if (testCase.type == TestType.Test)
-            afterTest(containedRobolectricRunner)
-        return result
+        beforeTest(containedRobolectricRunner)
+        process()
+        afterTest(containedRobolectricRunner)
     }
 
     private fun beforeTest(containedRobolectricRunner: ContainedRobolectricRunner) {
@@ -55,6 +46,6 @@ class TestCaseRobolectricExtension : ConstructorExtension, TestCaseExtension {
     private fun afterTest(containedRobolectricRunner: ContainedRobolectricRunner) {
         containedRobolectricRunner.containedAfter()
         Thread.currentThread().contextClassLoader =
-            TestCaseRobolectricExtension::class.java.classLoader
+            RobolectricSpecExtension::class.java.classLoader
     }
 }
