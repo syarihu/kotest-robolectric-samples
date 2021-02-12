@@ -46,7 +46,9 @@ class RobolectricSpecExtension : ConstructorExtension, SpecExtension {
     }
 
     private fun afterTest(containedRobolectricRunner: ContainedRobolectricRunner) {
-        containedRobolectricRunner.containedAfter()
+        kotlin.runCatching {
+            containedRobolectricRunner.containedAfter()
+        }
         Thread.currentThread().contextClassLoader =
             RobolectricSpecExtension::class.java.classLoader
     }
