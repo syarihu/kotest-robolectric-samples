@@ -50,11 +50,15 @@ class RobolectricTestCaseExtension : ConstructorExtension, TestCaseExtension {
     private fun beforeTest(containedRobolectricRunner: ContainedRobolectricRunner) {
         Thread.currentThread().contextClassLoader =
             containedRobolectricRunner.sdkEnvironment.robolectricClassLoader
-        containedRobolectricRunner.containedBefore()
+        kotlin.runCatching {
+            containedRobolectricRunner.containedBefore()
+        }
     }
 
     private fun afterTest(containedRobolectricRunner: ContainedRobolectricRunner) {
-        containedRobolectricRunner.containedAfter()
+        kotlin.runCatching {
+            containedRobolectricRunner.containedAfter()
+        }
         Thread.currentThread().contextClassLoader =
             RobolectricTestCaseExtension::class.java.classLoader
     }
