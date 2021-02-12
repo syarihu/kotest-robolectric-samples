@@ -7,7 +7,7 @@ import io.kotest.matchers.shouldNotBe
 import org.robolectric.RuntimeEnvironment
 
 @RobolectricTest
-class RoboSpec : FunSpec({
+class RoboSpec2 : FunSpec({
     context("hoge") {
         context("fuga") {
             test("piyo") {
