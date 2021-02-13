@@ -16,11 +16,21 @@ class RoboSpec : FunSpec({
             }
         }
     }
-    test("hoge2") {
+
+    context("hoge2") {
+        context("fuga2") {
+            test("piyo2") {
+                1 + 1 shouldBe 2
+                RuntimeEnvironment.systemContext shouldNotBe null
+            }
+        }
+    }
+
+    test("hoge3") {
         1 + 1 shouldBe 2
         RuntimeEnvironment.systemContext shouldNotBe null
     }
-    test("hoge3") {
+    test("hoge4") {
         1 + 1 shouldBe 2
         RuntimeEnvironment.systemContext shouldNotBe null
     }
